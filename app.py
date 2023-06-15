@@ -78,6 +78,7 @@ if ask:
             retriever=retriever,
             callbacks=[handler]
         )
+        chat_history = []
         res = qa({"question": user_input}) #, "chat_history": state['memory']['answer']})
         user_input = ''
 
