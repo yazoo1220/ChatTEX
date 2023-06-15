@@ -77,7 +77,7 @@ if ask:
         chain_type_kwargs = {"prompt": PROMPT}
         conversation = RetrievalQA.from_chain_type(
             llm=chat, 
-            chain_type='map_reduce',
+            chain_type='stuff',
             retriever=retriever,
             chain_type_kwargs=chain_type_kwargs,
             memory=state['memory']            
