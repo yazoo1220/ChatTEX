@@ -66,7 +66,7 @@ if ask:
             chunk_overlap  = 0,
             length_function = len,
         )
-        texts = text_splitter.split_text(_source_text)
+        texts = text_splitter.split_text(source_text)
         
         from langchain.docstore.document import Document
         docs = [Document(page_content=t) for t in texts]
