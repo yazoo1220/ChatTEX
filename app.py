@@ -8,7 +8,7 @@ from langchain.callbacks.base import BaseCallbackHandler
 from langchain.schema import (
     HumanMessage,
 )
-from langchain.chains import RetrievalQA
+from langchain.chains import ConversationalRetrievalChain
 from langchain.memory import ConversationBufferMemory
 import openai
 from typing import Any, Dict, List
@@ -26,8 +26,8 @@ def get_state():
 state = get_state()
 
 PROMPT = PromptTemplate(
-    input_variables=["chat_history","query"], 
-    template='Based on the following chat_history, Please reply to the question in format of markdown. history: {chat_history}. question: {query}'
+    input_variables=["chat_history","question"], 
+    template='Based on the following chat_history, Please reply to the question in format of markdown. history: {chat_history}. question: {question}'
 )
 
 source_text = st.text_area("source",placeholder="enter your text you want to chat with")
@@ -75,13 +75,13 @@ if ask:
         retriever = db.as_retriever()
         
         chain_type_kwargs = {"prompt": PROMPT}
-        qa = RetrievalQA.from_chain_type(
+        qa = ConversationalRetrievalChain.from_llm(
             llm=chat, 
             chain_type='stuff',
             retriever=retriever,
             chain_type_kwargs=chain_type_kwargs,
             memory=state['memory']            
         )
-        res = qa.run(query=user_input, callbacks=[handler])
+        res = qa({"question": user_input, "chat_history": chat_history}, callbacks=[handler])
         user_input = ''
 
