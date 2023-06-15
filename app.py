@@ -78,6 +78,6 @@ if ask:
             retriever=retriever,
             callbacks=[handler]
         )
-        res = qa({"question": user_input, "chat_history": state['memory']['answer']})
+        res = qa({"question": user_input}) #, "chat_history": state['memory']['answer']})
         user_input = ''
 
