@@ -30,7 +30,7 @@ PROMPT = PromptTemplate(
     template='Based on the following chat_history, Please reply to the question in format of markdown. history: {chat_history}. question: {input}'
 )
 
-source_text = st.text("source",placeholder="enter your text you want to chat with")
+source_text = st.text_area("source",placeholder="enter your text you want to chat with")
 user_input = st.text_input("You: ",placeholder = "Ask me anything ...")
 ask = st.button('ask',type='primary')
 reset=st.button('reset')
