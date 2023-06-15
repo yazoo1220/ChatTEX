@@ -79,7 +79,6 @@ if ask:
             llm=chat, 
             chain_type='stuff',
             retriever=retriever,
-            chain_type_kwargs=chain_type_kwargs,
             callbacks=[handler],
             memory=state['memory']            
         )
