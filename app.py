@@ -80,6 +80,6 @@ if ask:
         )
         chat_history = []
         res = qa({"question": user_input, "chat_history": chat_history})
-        st.markdown(res)
+        st.markdown(res['answer'])
         user_input = ''
 
