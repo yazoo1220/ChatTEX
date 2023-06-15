@@ -26,8 +26,8 @@ def get_state():
 state = get_state()
 
 PROMPT = PromptTemplate(
-    input_variables=["chat_history","input"], 
-    template='Based on the following chat_history, Please reply to the question in format of markdown. history: {chat_history}. question: {input}'
+    input_variables=["chat_history","query"], 
+    template='Based on the following chat_history, Please reply to the question in format of markdown. history: {chat_history}. question: {query}'
 )
 
 source_text = st.text_area("source",placeholder="enter your text you want to chat with")
