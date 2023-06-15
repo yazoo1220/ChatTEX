@@ -33,9 +33,6 @@ PROMPT = PromptTemplate(
 source_text = st.text_area("source",placeholder="enter your text you want to chat with")
 user_input = st.text_input("You: ",placeholder = "Ask me anything ...")
 ask = st.button('ask',type='primary')
-reset=st.button('reset')
-if reset:
-    st.session_state.starter = True
     
 st.markdown("----")
 
@@ -79,9 +76,8 @@ if ask:
             llm=chat, 
             chain_type='stuff',
             retriever=retriever,
-            callbacks=[handler],
-            memory=state['memory']            
+            callbacks=[handler]
         )
-        res = qa({"question": user_input, "chat_history": chat_history})
+        res = qa({"question": user_input, "chat_history": state['memory']})
         user_input = ''
 
