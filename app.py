@@ -66,6 +66,8 @@ if ask:
             chunk_overlap  = 0,
             length_function = len,
         )
+        texts = text_splitter.split_text(_source_text)
+        
         from langchain.docstore.document import Document
         docs = [Document(page_content=t) for t in texts]
         embeddings = OpenAIEmbeddings()
@@ -73,8 +75,6 @@ if ask:
         retriever = db.as_retriever()
         
         chain_type_kwargs = {"prompt": PROMPT}
-
-        texts = text_splitter.split_text(_source_text)
         conversation = RetrievalQA.from_chain_type(
             llm=chat, 
             chain_type='map_reduce',
