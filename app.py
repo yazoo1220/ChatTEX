@@ -80,8 +80,9 @@ if ask:
             chain_type='stuff',
             retriever=retriever,
             chain_type_kwargs=chain_type_kwargs,
+            callbacks=[handler],
             memory=state['memory']            
         )
-        res = qa({"question": user_input, "chat_history": chat_history}, callbacks=[handler])
+        res = qa({"question": user_input, "chat_history": chat_history})
         user_input = ''
 
