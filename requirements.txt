@@ -2,3 +2,4 @@ langchain
 tiktoken
 faiss-cpu
 streamlit
+openai
