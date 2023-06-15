@@ -75,13 +75,13 @@ if ask:
         retriever = db.as_retriever()
         
         chain_type_kwargs = {"prompt": PROMPT}
-        conversation = RetrievalQA.from_chain_type(
+        qa = RetrievalQA.from_chain_type(
             llm=chat, 
             chain_type='stuff',
             retriever=retriever,
             chain_type_kwargs=chain_type_kwargs,
             memory=state['memory']            
         )
-        res = conversation.predict(input=user_input, callbacks=[handler])
+        res = qa.run(input=user_input, callbacks=[handler])
         user_input = ''
 
