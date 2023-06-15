@@ -78,10 +78,10 @@ if ask:
         qa = RetrievalQA.from_chain_type(
             llm=chat, 
             chain_type='stuff',
-            retriever=retriever #,
-#             chain_type_kwargs=chain_type_kwargs,
-#             memory=state['memory']            
+            retriever=retriever,
+            chain_type_kwargs=chain_type_kwargs,
+            memory=state['memory']            
         )
-        res = qa.run(input=user_input, callbacks=[handler])
+        res = qa.run(query=user_input, callbacks=[handler])
         user_input = ''
 
